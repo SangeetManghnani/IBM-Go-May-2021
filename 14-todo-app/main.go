@@ -23,7 +23,10 @@ func main() {
 		log.Fatalf("Error connecting to database : %s", err.Error())
 	}
 	defer config.DB.Close()
+
+	// table creation
 	config.DB.AutoMigrate(&models.Todo{})
+
 	r := routes.SetupRouter()
 
 	r.Run()
